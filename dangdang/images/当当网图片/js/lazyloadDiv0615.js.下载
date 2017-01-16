@@ -1,0 +1,285 @@
+
+(function($, window) {
+    var $window = $(window);
+
+    $.fn.divlazyload = function(options) { //$.fn 指jquery的命名空间，加上fn的方法及属性，会对jquery每个实例都有效      
+
+        var elements = this;
+        var $container;
+        var settings = {
+            threshold       : 0,
+            failure_limit   : 0,
+            event           : "scroll",
+            effect          : "show",
+            container       : window,
+            data_attribute  : "original",
+            skip_invisible  : true,
+            appear          : null,
+            load            : null
+        };
+               
+        function update(){ 
+            elements.each(function() { //这里的elements指的是每个绑定懒加载的实例               
+                var $this = $(this);
+                if (settings.skip_invisible && !$this.is(":visible")) { //如果实例的标签是不显示，则直接return
+                    return;
+                }
+                
+                timeout = setTimeout(function(){time_delay($this)},250);                                             
+            });
+
+        }
+            
+        function time_delay(obj){
+            if ($.abovethetop(obj, settings) || $.leftofbegin(obj, settings)) { //如果已经滚动到屏幕上侧或屏幕左侧，则代表已经加载过了，不再加载
+            } else if (!$.belowthefold(obj, settings) && !$.rightoffold(obj, settings)) { //如果在当前窗口，则触发appear操作
+                obj.trigger("appear");
+            }
+        }   
+            
+
+        if(options) {
+            /* Maintain BC for a couple of versions. */
+            if (undefined !== options.failurelimit) {
+                options.failure_limit = options.failurelimit; 
+                delete options.failurelimit;
+            }
+            if (undefined !== options.effectspeed) {
+                options.effect_speed = options.effectspeed; 
+                delete options.effectspeed;
+            }
+
+            $.extend(settings, options);
+        }
+
+        /* Cache container as jQuery as object. */
+        $container = (settings.container === undefined ||
+            settings.container === window) ? $window : $(settings.container); //这里的container容器就是window
+
+        /* Fire one scroll event per scroll. Not one scroll event per image. */
+        if (0 === settings.event.indexOf("scroll")) { //indexOf  返回String对象内第一次出现子字符串的位置
+            $container.bind(settings.event, function(event) { //为window绑定scroll事件，执行update方法
+            return update();
+            });
+        }
+
+        this.each(function() {   
+            var self = this;
+            var $self = $(self);
+
+            self.loaded = false;                
+            $(this).attr('is_loaded',"false");  //标识实体是否已加载
+                
+            $self.one("appear", function() { //one()是为当前元素绑定一次性事件处理函数，这里表示为每一个实例绑定一次appear事件，该事件执行过后，将被移除，不会被执行第二次
+                if (!this.loaded) {
+                    if (settings.appear) {
+                        var elements_left = elements.length;
+                        settings.appear.call(self, elements_left, settings);
+                    }
+                    //异步加载组件数据
+                    var url=mix_ajax_api;
+                    var obj = $(this);
+                    $(this).html("<div style='text-align:center;width:100%;height:100%;position:relative;'><img src='http://img62.ddimg.cn/upload_img/00111/home/home_loading_0828.gif' style='position:absolute;left:50%;top:50%;margin-left:-90px; margin-top:-76px;'/></div>");
+                    var postdata={
+                        isajax:1,
+                        page_id:$(this).attr('page_id'),
+                        component_map_id:$(this).attr('component_map_id'),
+                        domain:$(this).attr('domain'),
+                        path_name:$(this).attr('path_name'),
+                        areaid:$(this).attr('areaid'),
+                        page_type:$(this).attr('page_type'),
+                        areatype:$(this).attr('areatype'),
+			display_date:$(this).attr('display_date'),
+                        mix:1,
+                        domain_flag:1,
+                        curr_area_id:curr_area_id
+                    };  
+                    var ask_times = 0; //用于记录每一个接口请求的次数
+                    getData(url,postdata,obj,ask_times,$(this));
+                }
+            });
+            //异步请求数据
+            function getData(url,data,obj,ask_times,curr_obj){                             
+                     $.ajax({
+                            type:'get',
+                            url:url,
+                            data:data,
+                            dataType: "json",
+                            success:function(msg){                  
+                                if(data!=''){ 
+                                    obj.html(msg);
+                                    
+                                   if(obj.find(".con").html() == ''){
+                                      obj.hide();
+                                   }
+                                    
+                                    
+                                    callAjax(obj,0);
+                                    /*过滤操作对象,减量*/
+                                    elements.each(function(i,n){                                        
+                                        if($(n).attr("component_map_id")==obj.attr("component_map_id")){
+                                            elements.splice(i,1);
+                                            return false;
+                                        }
+                                    });
+
+                                    /*更新层的状态标识*/
+                                    this.loaded = true; 
+                                    curr_obj.attr('is_loaded',true);
+                                }
+                            },
+                            error:function(XmlHttpRequest, textStatus, errorThrown){ 
+                                ++ask_times;                                  
+                                if(ask_times<3){
+                                    timer = window.setTimeout(getData(url,data,obj,ask_times,curr_obj),2000);
+                                }else{
+                                    obj.hide();
+                                     /*过滤操作对象,减量*/
+                                    elements.each(function(i,n){                                         
+                                        if($(n).attr("component_map_id")==obj.attr("component_map_id")){
+                                            elements.splice(i,1);
+                                            return false;
+                                        }
+                                    });
+                                }         
+                            }
+                     });
+            }
+            /* When wanted event is triggered load original image */
+            /* by triggering appear.                              */
+            if (0 !== settings.event.indexOf("scroll")) {
+                $self.bind(settings.event, function(event) {
+                    if (!self.loaded) {
+                        $self.trigger("appear");
+                    }
+                });
+            }
+        });
+
+        /* Check if something appears when window is resized. */
+        $window.bind("resize", function(event) {
+            update();
+        });
+
+        /* Force initial check if images should appear. */
+        $(document).ready(function() {
+            update();
+        });
+        
+        return this;  
+    };
+
+    /* Convenience methods in jQuery namespace.           */
+    /* Use as  $.belowthefold(element, {threshold : 100, container : window}) */
+
+    $.belowthefold = function(element, settings) {//判断当前元素是否已经滚动到屏幕下侧（已经移除当前窗口）
+        var fold;
+        
+        if (settings.container === undefined || settings.container === window) {
+            fold = $window.height() + $window.scrollTop();
+        } else {
+            fold = $(settings.container).offset().top + $(settings.container).height();
+        }
+
+        return fold <= $(element).offset().top - settings.threshold;
+    };
+    
+    $.rightoffold = function(element, settings) { //判断当前元素是否已经滚动到屏幕右侧（已经移除当前窗口）
+        var fold;
+
+        if (settings.container === undefined || settings.container === window) {
+            fold = $window.width() + $window.scrollLeft();
+        } else {
+            fold = $(settings.container).offset().left + $(settings.container).width();
+        }
+
+        return fold <= $(element).offset().left - settings.threshold;
+    };
+        
+    //    $.abovethetop = function(element, settings) { //判断当前元素是否已经滚动到屏幕上侧（已经移除当前窗口）
+    //        var fold;
+    //        
+    //        if (settings.container === undefined || settings.container === window) { //如果容器是window
+    //            fold = $window.scrollTop(); //返回容器的垂直滚动条距离顶端的位置
+    //        } else {
+    //            fold = $(settings.container).offset().top;
+    //        }
+    //
+    //        return fold >= $(element).offset().top + settings.threshold  + $(element).height(); //offset（）返回匹配元素在当前视口的相对偏移,一般是相对于body,而height()用来获取元素的高度
+    //    };
+    
+    
+    $.abovethetop = function(element, settings) { //判断当前元素是否已经滚动到屏幕上侧（已经移除当前窗口）   
+        var fold = $window.scrollTop(); //返回容器的垂直滚动条距离顶端的位置
+       
+
+        return fold >= $(element).offset().top + settings.threshold  + $(element).height(); //offset（）返回匹配元素在当前视口的相对偏移,一般是相对于body,而height()用来获取元素的高度
+    };
+    
+    
+    $.leftofbegin = function(element, settings) { //判断当前元素是否已经滚动到屏幕左侧（已经移除当前窗口）
+        var fold;
+        
+        if (settings.container === undefined || settings.container === window) {
+            fold = $window.scrollLeft(); //返回容器的水平滚动条距离左端的位置
+        } else {
+            fold = $(settings.container).offset().left;
+        }
+
+        return fold >= $(element).offset().left + settings.threshold + $(element).width();
+    };
+
+    $.inviewport = function(element, settings) {
+        return !$.rightoffold(element, settings) && !$.leftofbegin(element, settings) &&
+        !$.belowthefold(element, settings) && !$.abovethetop(element, settings);
+    };
+
+    /* Custom selectors for your convenience.   */
+    /* Use as $("img:below-the-fold").something() or */
+    /* $("img").filter(":below-the-fold").something() which is faster */
+
+    $.extend($.expr[':'], {
+        "below-the-fold" : function(a) {
+            return $.belowthefold(a, {
+                threshold : 0
+            });
+        },
+        "above-the-top"  : function(a) {
+            return !$.belowthefold(a, {
+                threshold : 0
+            });
+        },
+        "right-of-screen": function(a) {
+            return $.rightoffold(a, {
+                threshold : 0
+            });
+        },
+        "left-of-screen" : function(a) {
+            return !$.rightoffold(a, {
+                threshold : 0
+            });
+        },
+        "in-viewport"    : function(a) {
+            return $.inviewport(a, {
+                threshold : 0
+            });
+        },
+        /* Maintain BC for couple of versions. */
+        "above-the-fold" : function(a) {
+            return !$.belowthefold(a, {
+                threshold : 0
+            });
+        },
+        "right-of-fold"  : function(a) {
+            return $.rightoffold(a, {
+                threshold : 0
+            });
+        },
+        "left-of-fold"   : function(a) {
+            return !$.rightoffold(a, {
+                threshold : 0
+            });
+        }
+    });
+
+})(jQuery, window);

@@ -1,0 +1,194 @@
+* {
+	margin:0px;
+	padding: 0px;
+	list-style: none;
+	text-decoration: none;
+}
+#all{
+	width:100%;
+	background-color: #F6F9FB;
+}
+/*header样式*/
+header{
+	width:960px; 
+	margin: 0px auto;
+	border-bottom: 2px solid #F07700;
+	border-top: 3px solid #E0E0E0;
+	background-color: #ffffff;
+}
+header ul{
+	display: inline-block;
+	width:463px;
+	float: right;
+}
+header a:hover{
+	text-decoration: underline;
+}
+header ul li{
+	display: inline-block;
+	float: left;
+	font-size: 13px;
+	text-indent:10px; 
+	position: relative;
+}
+header ul li a{
+	color: #404040;	
+}
+header ul li:after{
+	content: '|';
+}
+header ul li span{
+	display: inline-block;
+	border: 3px solid  transparent;
+	border-top:3px solid #949493;
+}
+header ul ol{
+	display: inline-block;
+	width:192px;
+	float: right;
+}
+header ul ol p{
+	display: inline-block;
+	font-size: 13px;
+	color:  #404040;
+}
+header ul ol li{
+	float: right;
+}
+header ul ol a{
+	font-size: 13px;
+}
+.my {
+	background:url(../../new/images/bgimg/register-shop.png) no-repeat -6px -2px;
+	text-indent:20px; 
+}
+header ul li div{
+	display: inline-block;
+	position: absolute;
+	top: 15px;
+	left:-1px;
+	display: none;
+}
+header ul .dangdang div a{
+	display: inline-block;
+	width:76px;
+	text-align: center;
+	float: left;
+	box-sizing: 
+}
+header ul .dangdang div{
+	width:81px;
+	border:1px solid #e6e6e6;
+}
+header ul .card div{
+	width:74px;
+	border:1px solid #e6e6e6;
+}
+header ul .card div a{
+	display: inline-block;
+	width:60px;
+	text-align: center;
+	float: left;
+}
+#go{
+	width: 950px;
+	margin:40px auto;
+	padding: 0px 5px;
+	background-color: #ffffff;
+	box-shadow: -6px 6px 10px #EBEEEF ;
+}
+#nav{
+	width:920px;
+	height:43px;
+	padding: 30px 0px 0px 30px;
+	border-bottom: 1px solid #e6e6e6;
+}
+#nav span{
+	display: inline-block;
+	width: 134px;
+	height:43px;
+	line-height: 43px; 
+	color: #464646;
+	font-size: 16px;
+	text-align: center;
+	background-color: #F5F5F5;
+	border:1px solid #e6e6e6;
+	border-bottom: none;
+	margin-right: 15px;
+	cursor: pointer;
+}
+#go form{
+	display: inline-block;
+	padding: 44px 260px 40px 240px;
+}
+#go form p{
+	width: 450px;
+	height: 42px;
+	line-height: 42px;
+	display: inline-block;
+	font-size:17px;
+	color: #646464;
+}
+#go form p input{
+	display: inline-block;
+	width: 310px;
+	height: 40px;
+	border:1px solid #e6e6e6;
+	border-radius:2px;
+	outline: none;
+	margin-left:10px; 
+}
+.phone1,.phone2,.password1,.password2,.password3,.password4,.password5,.old,.password6{
+	display: inline-block;
+	width: 310px;
+	height: 28px;
+	line-height: 28px;
+	margin-left:128px;
+	font-size:10px;
+}
+.phone1,.password1,.password4,.password6{
+	color: #7C8484;
+	visibility: hidden;
+}
+.phone2,.password2,.password3,.password5{
+	color: red;
+	position: absolute;
+	margin-left:-320px;
+	visibility: hidden;
+}
+.password3 span{
+	display: inline-block;
+	width:23px;
+	height: 10px;
+	line-height: 10px;
+	border-radius:2px;
+	margin-right: 1px;
+}
+.password3  a{
+	color: red;
+	font-size: 10px;
+}
+input[type=submit]{
+	width:180px;
+	height: 50px;
+	background-color: #FF2832;
+	color: #ffffff;
+	font-weight: bold;
+	font-size: 16px;
+	border:none;
+	outline: none;
+	margin:30px 0px  0px 150px;
+	border-radius:30px; 
+}
+input[type=checkbox]{
+	position: relative;
+	top:3px;
+	right: 5px;
+}
+canvas{
+	display: inline-block;
+	width: 87px;
+	height: 42px;
+	position: absolute;
+	top:449px;
+}

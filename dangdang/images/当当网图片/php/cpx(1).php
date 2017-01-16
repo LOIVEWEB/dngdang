@@ -1,0 +1,1 @@
+DD_AD.cpx_ad['12287']={"data":[[{"pos_info":{"type":3,"show_type":1,"pos_img":"","pos_img_big":"","pos_url":"","pos_url_big":"","pos_desc":false,"wdith":960,"wdith_big":1200,"height":520,"height_big":700}}]]}
