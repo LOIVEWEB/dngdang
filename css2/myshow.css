@@ -1,0 +1,261 @@
+
+@media (min-width: 1000px){
+	div.show h2.guest{
+		font-size: 2.5em;
+	}
+	div#guestshow p.name{
+
+		font-size: 2.5em;
+	}
+	div#guestshow p.words{
+		font-size: 2em;
+	}
+	div.contact_me{
+		font-size: 2em;
+	}
+	div.contact{
+		font-size: 1.3em;
+	}
+	div.contact form#contact_form{
+		font-size: 0.8em;
+	}
+	footer h3.dayspa{
+		font-size: 3em;
+	}
+}
+
+@media (min-width: 640px) and (max-width: 999px){
+	div.show h2.guest{
+		font-size: 2em;
+	}
+	div#guestshow p.name{
+
+		font-size: 2em;
+	}
+	div#guestshow p.words{
+		font-size: 1.5em;
+	}
+	div.contact_me{
+		font-size: 1.5em;
+	}
+	div.contact{
+		font-size: 1.1em;
+	}
+	div.contact form#contact_form{
+		font-size: 0.6em;
+	}
+	footer h3.dayspa{
+		font-size: 2.5em;
+	}
+}
+
+@media (max-width: 639px){
+	div.show h2.guest{
+		font-size: 10px;
+	}
+	div#guestshow p.name{
+
+		font-size: 1.5em;
+	}
+	div#guestshow p.words{
+		font-size: 1.0em;
+	}
+	div.contact_me{
+		font-size: 1.0em;
+	}
+	div.contact{
+		font-size: 0.9em;
+	}
+	div.contact form#contact_form{
+		font-size: 0.4em;
+	}
+	footer h3.dayspa{
+		/*font-size:1.0em;*/
+		font-size: 8px;
+	}
+}
+
+/*‘我们的客人说了什么’部分*/
+div.show{
+	padding-top: 10px;
+}
+div.show h2.guest{
+	color: #293364;
+	font-size:2.5em;
+	display:block;
+	width: 100%;
+	font-weight: bold;
+	text-align: center;
+	padding-top: 3%;
+}
+div.show div#guestshow{
+	width:60%;
+	height: 380px;
+	margin: 0 auto;
+	position: relative;
+}
+div#guestshow div{
+	width:100%;
+	margin: 0 auto;
+	text-align: center;
+}
+div#guestshow div.list0,div#guestshow div.list1,div#guestshow div.list2{
+	position: absolute;
+}
+/*淡入淡出小圆点*/
+div#ol_ol{
+	width: 100%;
+	height: 20px;
+	text-align: center;
+	position: relative;
+}
+div#ol_ol ol.ol_circle{
+	list-style: none;
+	padding: 0;
+	position: absolute;
+	left: 46%;
+	z-index: 0;
+}
+ol.ol_circle li{
+	width: 15px;
+	height: 15px;
+	border-radius: 50%;
+	background: #293364;
+	float: left;
+	margin-right: 10px;
+}
+/*隐藏*/
+div#guestshow p.name{
+	color: #293364;
+	background:#FF8DAE;
+	font-size: 2.5em;
+}
+div#guestshow p.words{
+	color: #FFE1EA;
+	background:#FF8DAE;
+	font-size: 2em;
+}
+/*单击弹出按钮*/
+div.contact_me{
+	color: #293364;
+	font-size:2em;
+	display:block;
+	width: 90%;
+	margin: 0 auto;
+	text-align: center;
+	padding-top: 5%;
+	padding-bottom: 5%;
+}
+/*弹出页面*/
+div.contact{
+	text-align: left;
+	display: none;
+	font-size:1.3em;
+	position: fixed;
+	left: 0;
+	top:0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+	color: white;
+	width: 100%;
+	height: 100%;
+	background-color: #000;
+	
+}
+div.contact form#contact_form{
+	width: 50%;
+	height:75%;
+	color: #293364;
+	font-size:0.8em;
+	background: #fff;
+	left: 0;
+	top: 20%;
+	right: 0;
+	bottom: 30%;
+	position: absolute;
+	margin: 0 auto;
+	z-index: 100;
+}
+h3#modal-title{
+	margin-left: 20px;
+	margin-top: 10px;
+}
+div.form-group{
+	width: 90%;
+	margin: 0 auto;
+	margin-bottom: 8px;
+}
+textarea#say{height: 20px;font-size: 10px;}
+button.btn{
+	margin-left: 20%;
+	margin-right: 20px;
+	width: 20%;
+	float: right;
+	margin: 0 auto;
+}
+/*footer*/
+footer{
+	margin-top: 10px;
+	overflow: hidden;
+	width: 100%;
+	height: 200px;
+	background-color: #FF8DAE;
+	text-align: center;
+}
+footer h3.dayspa{
+	@media(max-width: 500px){
+		font-size: 1em;
+	}
+	
+	padding-top: 20px;
+	color: #293364;
+	height: 45px;
+}
+footer ol.link{
+	list-style: none;
+	padding: 0;
+	margin-top:4%;
+	overflow: hidden;
+	width:99%;
+	margin-left: 45%;
+	text-align: center;
+}
+ol.link li{
+	float: left;
+	margin-right:10px;
+		
+}
+ol.link li a{
+	display: block;
+	height: 20px;
+	width: 20px;
+	border-radius: 15%;	
+	margin: 0 auto;
+}
+li.qq a{
+	background-size: 400px;
+	background: url(../img/sprite.png) -60px -60px no-repeat;
+}
+li.qq a:hover{
+	background: url(../img/sprite.png) -89px -60px no-repeat;
+}
+li.weixin a{
+	background-size: 400px;
+	background: url(../img/sprite.png) -118px -60px no-repeat;
+}
+li.weixin a:hover{
+	background: url(../img/sprite.png) -147px -60px no-repeat;
+}
+li.sina a{
+	background-size: 400px;
+	background: url(../img/sprite.png) -176px -60px no-repeat;
+}
+li.sina a:hover{
+	background: url(../img/sprite.png) -205px -60px no-repeat;
+}
+p.message{
+	margin-top: 10px;
+	color: white;
+	margin-bottom: 10px;
+}

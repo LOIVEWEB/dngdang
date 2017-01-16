@@ -1,0 +1,149 @@
+@font-face {
+   font-family: 'Merienda-Regular';
+   src: url(../fonts/Merienda-Regular.ttf)format('truetype');
+}
+html body{
+	font-size: 100%;
+}
+.kitirro h1.title{
+	font-family: 'Merienda-Regular';
+	text-align: center;
+	font-size: 48px;	
+}
+.kitirro div.products{
+	margin-top: 120px;
+	padding: 50px 0;
+	background-color: #293364;
+}
+.kitirro div.row>h1{
+	color: #ff8fae;
+}
+.kitirro div.row>p{
+	text-align: center;
+	color: #fff;
+	padding: 10px 0;
+}
+.kitirro div.onmouse>a{
+	display: inline-block;
+	font-size: 28px;	
+	font-weight: bold;
+	color: #ff8fae;
+	font-family: 'Merienda-Regular';
+	margin: 5px 0;
+}
+.kitirro div.onmouse>a:hover{
+	color: #293364;
+	text-decoration: none;
+}
+.kitirro div.onmouse{
+	position: relative;
+}
+.kitirro div.onmouse>p{
+	line-height: 25px;
+}
+@media(min-width: 427px) and (max-width: 992px){
+	.kitirro div.infoPost{
+		width: 360px;
+	}
+}
+@media(min-width: 992px) and (max-width: 1199px){
+	.kitirro div.infoPost{
+		width: 100%;
+	}
+}
+@media(max-width: 427){
+	.kitirro div.infoPost{
+		width: 100%;
+	}
+}
+
+
+.kitirro div.infoPost{
+	overflow: hidden;
+}
+.kitirro div.info_left{
+	cursor: pointer;
+	float: left;
+	width: 50%;
+}
+.kitirro div.info_left:hover{
+	color: #293364;
+}
+.kitirro div.info_right{
+	float: right;
+	width: 25%;
+}
+
+.kitirro div.nopa{
+	padding-left: 0;
+	color: #ff8fae;
+}
+.kitirro div.nopa i{
+	color: #ff8fae;
+	cursor: pointer;
+}
+.kitirro div.nopa i:hover{
+	color: #293364;	
+}
+.kitirro div.nopa a{
+	color: #000;
+}
+.kitirro div.nopa a:hover{
+	text-decoration: none;
+}
+
+/*文字环绕*/
+.kitirro a.father img{
+	/*position: absolute;*/
+	display: block;
+}
+
+.kitirro a.father{
+	/*display: inline-block;*/
+	position: relative;
+	overflow: hidden;
+	/*width: 360px;
+	height: 370px;*/
+}
+.kitirro div.dopa{
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	/*overflow: hidden;*/
+}
+/*div.mask{
+	position: absolute;
+	left: 0px;
+	top: 0px;
+}*/
+.kitirro div.dopa p{
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	color: #ff8fae;
+	font-size: 28px;
+	font-family: "微软雅黑";
+}
+@media(max-width: 768px){
+	.kitirro div.dopa p{
+		font-size: 16px;
+	}
+}
+@media(min-width: 478px) and (max-width: 992px){
+	.kitirro div.dopa p{
+		font-size: 20px;
+	}
+}
+@media(min-width: 992px) and (max-width: 1199px){
+	.kitirro div.dopa p{
+		font-size: 16px;
+	}
+}
+@media(max-width: 478){
+	.kitirro div.dopa p{
+		font-size: 10px;
+	}
+}

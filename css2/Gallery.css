@@ -1,0 +1,103 @@
+.Gallery{
+	padding: 50px 0;
+	font-family: 'Merienda-Regular';
+}
+.Gallery .Gallery-imgbox{
+	margin: 0;
+	padding: 0;
+	position: relative;
+}
+.Gallery h3.tit{
+	text-align: center;
+	color: #293364;
+	font-size: 3em;
+}
+.Gallery .Gallery-shadowbox{
+	overflow: hidden;
+	position: absolute;
+	text-align: center;
+	color: #fff;
+	background-color: #293364;
+	opacity: 0.7;
+}
+.Gallery .Gallery-shadowbox1{
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+.Gallery .Gallery-shadowbox h3{
+	margin-top: 30%;
+}
+/*模态弹出窗*/
+.Gallery-modal .modal-content{
+	color: #fff;
+	background: #000;
+	padding-top: 7%;
+	box-sizing: border-box;
+	padding-bottom: 3.5%;
+}
+.Gallery-modal .modal-header h4{
+	text-align: center;
+	font-family: 'Merienda-Regular';
+	font-size: 3em;
+}
+.Gallery-modal .modal-content p{
+	font-family: 'Merienda-Regular';
+	font-size: 2em;
+	text-align: center;
+}
+.Gallery-modal .modal-content img{
+	margin: 10px auto;
+}
+.Gallery-modal  .modal-footer{
+	position: absolute;
+	width: 100%;
+	background: #000;
+	display: none;
+}
+.Gallery-modal .modal-footer .Gallery-btn{
+	font-size: 2em;
+	color: #fff;
+	font-weight: bold;
+	cursor: pointer;
+	background-color: #000;
+	border: none;
+	outline: none;
+}
+.Gallery-modal .model-body{
+	margin-bottom: 5%;
+	padding: 1% 0;
+	box-sizing: border-box;
+}
+.Gallery-modal .model-smallbody{
+	padding: 0 15%;
+	box-sizing: border-box;
+}
+@media(max-width: 1200px){
+	.Gallery h3.tit{
+		font-size: 2em;
+	}
+	.Gallery-modal .modal-header h4{
+		font-size: 1.5em;
+	}
+	.Gallery-modal .modal-content p{
+		font-size: 1.5em;
+	}
+	.Gallery-modal .modal-footer .Gallery-btn{
+		font-size: 1.5em;
+	}
+}
+@media(max-width: 900px){
+	.Gallery h3.tit{
+		font-size: 1.5em;
+	}
+	.Gallery-modal .modal-header h4{
+		font-size: 1em;
+	}
+	.Gallery-modal .modal-content p{
+		font-size: 0.5em;
+	}
+	.Gallery-modal .modal-footer .Gallery-btn{
+		font-size: 0.5em;
+	}
+}
